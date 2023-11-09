@@ -1,4 +1,7 @@
 ## X.Y.Z 2023-y-z
+### CustomerSheet
+* [Added] Saved SEPA payment methods are now displayed to the customer for reuse, similar to saved cards.
+
 ### PaymentSheet
 * [Fixed] Visual bug where re-presenting PaymentSheet wouldn't show a spinner while it reloads.
 * [Added] If PaymentSheet fails to load a deferred intent configuration, we fall back to displaying cards (or the intent configuration payment method types) instead of failing.

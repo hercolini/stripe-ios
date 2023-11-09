@@ -157,11 +157,14 @@ public class CustomerSheet {
 }
 
 extension CustomerSheet {
+
     func loadPaymentMethodInfo(completion: @escaping (Result<([STPPaymentMethod], CustomerPaymentOption?, [STPPaymentMethodType]), Error>) -> Void) {
         Task {
             do {
                 async let paymentMethodsResult = try customerAdapter.fetchPaymentMethods()
                 async let selectedPaymentMethodResult = try self.customerAdapter.fetchSelectedPaymentOption()
+                //Ensure local specs are loaded prior to ones
+                await loadFormSpecs()
                 async let merchantSupportedPaymentMethodTypes = try self.retrieveMerchantSupportedPaymentMethodTypes()
                 let (paymentMethods, selectedPaymentMethod, elementSesssion) = try await (paymentMethodsResult, selectedPaymentMethodResult, merchantSupportedPaymentMethodTypes)
                 completion(.success((paymentMethods, selectedPaymentMethod, elementSesssion)))
@@ -176,7 +179,18 @@ extension CustomerSheet {
             return [.card]
         }
         let elementSession = try await configuration.apiClient.retrieveElementsSessionForCustomerSheet()
+        _ = FormSpecProvider.shared.loadFrom(elementSession.paymentMethodSpecs as Any)
         return elementSession.orderedPaymentMethodTypes
+    }
+
+    func loadFormSpecs() async {
+        await withCheckedContinuation { continuation in
+            Task {
+                FormSpecProvider.shared.load { _ in
+                    continuation.resume()
+                }
+            }
+        }
     }
 }
 
