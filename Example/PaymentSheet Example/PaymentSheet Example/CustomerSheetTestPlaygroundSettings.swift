@@ -71,6 +71,12 @@ public struct CustomerSheetTestPlaygroundSettings: Codable, Equatable {
         case never
         case full
     }
+    enum MerchantCountry: String, PickerEnum {
+        static var enumName: String { "MerchantCountry" }
+
+        case US
+        case FR
+    }
 
     var customerMode: CustomerMode
     var customerId: String?
@@ -78,6 +84,7 @@ public struct CustomerSheetTestPlaygroundSettings: Codable, Equatable {
     var applePay: ApplePay
     var headerTextForSelectionScreen: String?
     var defaultBillingAddress: DefaultBillingAddress
+    var merchantCountryCode: MerchantCountry
     var autoreload: Autoreload
 
     var attachDefaults: BillingDetailsAttachDefaults
@@ -93,6 +100,7 @@ public struct CustomerSheetTestPlaygroundSettings: Codable, Equatable {
                                                    applePay: .on,
                                                    headerTextForSelectionScreen: nil,
                                                    defaultBillingAddress: .off,
+                                                   merchantCountryCode: .US,
                                                    autoreload: .on,
                                                    attachDefaults: .off,
                                                    collectName: .automatic,
