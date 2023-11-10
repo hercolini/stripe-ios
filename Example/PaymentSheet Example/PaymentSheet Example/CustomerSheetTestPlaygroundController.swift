@@ -286,7 +286,7 @@ class CustomerSheetBackend {
                                          completion: @escaping ([String: String]?) -> Void) {
 
         let body = [ "customer_type": customerType,
-                     "merchant_country_code": merchantCountryCode
+                     "merchant_country_code": merchantCountryCode,
         ] as [String: Any]
 
         let url = URL(string: "\(endpoint)/customer_ephemeral_key")!
@@ -313,7 +313,7 @@ class CustomerSheetBackend {
 
     func createSetupIntent(customerId: String, merchantCountryCode: String) async throws -> String {
         let body = [ "customer_id": customerId,
-                     "merchant_country_code": merchantCountryCode
+                     "merchant_country_code": merchantCountryCode,
         ] as [String: Any]
         let url = URL(string: "\(endpoint)/create_setup_intent")!
         let session = URLSession.shared
