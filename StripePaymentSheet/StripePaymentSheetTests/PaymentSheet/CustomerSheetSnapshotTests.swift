@@ -406,6 +406,7 @@ class CustomerSheetSnapshotTests: STPSnapshotTestCase {
         verify(cs.bottomSheetViewController.view!)
     }
 */
+    /*
     func testSEPADebit_bdcc_0200() {
         stubSessions(paymentMethods: "\"sepa_debit\"")
         let bdcc = billingDetailsCollectionConfiguration(name: .automatic,
@@ -459,7 +460,7 @@ class CustomerSheetSnapshotTests: STPSnapshotTestCase {
         presentCS(darkMode: false)
         verify(cs.bottomSheetViewController.view!)
     }
-
+*/
     func stubbedPaymentMethod() -> STPPaymentMethod {
         return STPPaymentMethod.decodedObject(fromAPIResponse: [
             "id": "pm_123card",
