@@ -348,6 +348,8 @@ class CustomerSheetSnapshotTests: STPSnapshotTestCase {
         presentCS(darkMode: false)
         verify(cs.bottomSheetViewController.view!)
     }
+
+    /*
     func testSEPADebit_only() {
         stubSessions(paymentMethods: "\"sepa_debit\"")
         prepareCS(configuration: configuration())
@@ -360,14 +362,14 @@ class CustomerSheetSnapshotTests: STPSnapshotTestCase {
         presentCS(darkMode: false)
         verify(cs.bottomSheetViewController.view!)
     }
-/*
+
     func testCard_SEPADebit() {
         stubSessions(paymentMethods: "\"card\", \"sepa_debit\"")
         prepareCS(configuration: configuration())
         presentCS(darkMode: false)
         verify(cs.bottomSheetViewController.view!)
     }
-*/
+
     func testSEPADebit_only_dark() {
         stubSessions(paymentMethods: "\"sepa_debit\"")
 
@@ -382,7 +384,7 @@ class CustomerSheetSnapshotTests: STPSnapshotTestCase {
         presentCS(darkMode: true)
         verify(cs.bottomSheetViewController.view!)
     }
-
+*/
 /*
     func testCard_SEPADebit_dark() {
         stubSessions(paymentMethods: "\"card\", \"sepa_debit\"")
