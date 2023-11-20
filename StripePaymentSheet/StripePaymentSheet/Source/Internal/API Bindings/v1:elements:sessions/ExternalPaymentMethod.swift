@@ -17,18 +17,8 @@ struct ExternalPaymentMethod: Decodable, Equatable, Hashable {
     let localizedLabel: String
     /// URL of a 48x pixel tall PNG representing the payment method suitable for display against a light background color.
     let lightImageURL: URL
-    /// URL of a 48x pixel tall PNG representing the payment method suitable for display against a dark background color.
-    let darkImageURL: URL
-
-    // TODO: Temporary shim while we only support hardcoded "external_paypal"
-    static func makeExternalPaypal() -> ExternalPaymentMethod {
-        return .init(
-            type: "external_paypal",
-            localizedLabel: STPPaymentMethodType.payPal.displayName,
-            lightImageURL: URL(string: "https://todo.com")!,
-            darkImageURL: URL(string: "https://todo.com")!
-        )
-    }
+    /// URL of a 48x pixel tall PNG representing the payment method suitable for display against a dark background color. If `nil`, use `lightImageURL` instead.
+    let darkImageURL: URL?
 
     /// Helper method to decode the `v1/elements/sessions` response.
     /// - Parameter response: The value of the `external_payment_methods_data` key in the `v1/elements/sessions` response.
