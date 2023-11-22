@@ -35,9 +35,11 @@ final class AttributedTextView: HitTestView {
         boldFont: FinancialConnectionsFont,
         linkFont: FinancialConnectionsFont,
         textColor: UIColor,
-        linkColor: UIColor = .textBrand,
+        // links are the same color as the text by default
+        linkColor: UIColor? = nil,
         alignCenter: Bool = false
     ) {
+        let linkColor = linkColor ?? textColor
         let textContainer = NSTextContainer(size: .zero)
         let layoutManager = VerticalCenterLayoutManager()
         layoutManager.addTextContainer(textContainer)
@@ -62,7 +64,8 @@ final class AttributedTextView: HitTestView {
         textView.textContainerInset = .zero
         textView.textContainer.lineFragmentPadding = 0.0
         textView.linkTextAttributes = [
-            .foregroundColor: linkColor
+            .foregroundColor: linkColor,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
         ]
         textView.delegate = self
         // remove clipping so when user selects an attributed
@@ -134,6 +137,11 @@ final class AttributedTextView: HitTestView {
 
             // setting font in `linkTextAttributes` does not work
             string.addAttribute(.font, value: linkFont.uiFont, range: link.range)
+
+            // increase space between text and underline
+            //
+            // setting this in `linkTextAttributes` did not work
+            string.addAttribute(.baselineOffset, value: NSNumber(value: 2), range: link.range)
 
             linkURLStringToAction[link.urlString] = link.action
         }

@@ -23,7 +23,7 @@ enum Image: String, ImageMaker {
     case check
     case chevron_down
     case close
-    case ellipsis
+    case ellipsis // TODO(kgaidis): delete it
     case generic_error
     case prepane_phone_background
     case search

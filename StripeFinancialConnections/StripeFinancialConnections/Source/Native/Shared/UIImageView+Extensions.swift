@@ -58,7 +58,7 @@ private func DownloadImage(
     }
     URLSession.shared.dataTask(with: url) { data, response, _ in
         guard let response = response as? HTTPURLResponse else {
-            assertionFailure("we always expect to get back `HTTPURLResponse`")
+//            assertionFailure("we always expect to get back `HTTPURLResponse`")
             completionHandler(nil)
             return
         }
